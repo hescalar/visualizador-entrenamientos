@@ -82,7 +82,7 @@ Este es un visualizador de entrenamientos semanal personalizado para mí.\
 \
 **¡Fuerza gordito!**
 
-El entrenamiento fue creado con ayuda de la Inteligencia Artificial de DeepSeek gracias ballenita.\
+El entrenamiento fue creado con ayuda de la Inteligencia Artificial de DeepSeek, gracias ballenita.\
 
 La página fue creada con los tutoriales de Quarto y el apoyo constante de Chat-GPT, gracias **OPEN-AI**. 
 
