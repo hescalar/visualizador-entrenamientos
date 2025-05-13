@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visualizador entrenamientos piloto",
+    "section": "",
+    "text": "¡ARRIBAAAAAAAA!\nEste es un visualizador de entrenamientos semanal personalizado para mí.\n¡Fuerza gordito!\nEl entrenamiento fue creado con ayuda de la Inteligencia Artificial de Chat-GPT… gracias OPEN-AI.\nTambién fue usada como asistente para la creación de esta página web, que es la primera que hago en la vida, por supuesto, los tutoriales de Quarto también fueron de utilidad.\n\n\n\n\n\nSelecciona la semana:  Semana 1: Adaptación Progresiva Semana 2: Resistencia Integrada Semana 3: Fuerza Excéntrica Semana 4: Desafío Integral \n\n\n\nLunes\n\n\nMartes\n\n\nMiércoles\n\n\nJueves\n\n\nViernes\n\n\nSábado\n\n\nDomingo\n\n\n\n\n\n\n   Tu navegador no soporta audio HTML5."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#instrucciones",
+    "href": "index.html#instrucciones",
+    "title": "Visualizador de Entrenamientos",
+    "section": "Instrucciones",
+    "text": "Instrucciones\nHaz clic en un día:\n\n\n&lt;button style=\"padding: 12px; margin: 5px;\"&gt;Lunes&lt;/button&gt;&lt;button style=\"padding: 12px; margin: 5px;\"&gt;Martes&lt;/button&gt;"
+  }
+]

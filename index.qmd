@@ -1,0 +1,387 @@
+---
+title: "Visualizador entrenamientos piloto"
+format:
+  html:
+    toc: false
+    page-layout: full
+    theme: none
+    css: styles.css
+    self-contained: true
+    number-sections: false
+    navbar: false
+---
+<!-- 💡 AÑADE EL BLOQUE DE ESTILO AQUÍ -->
+
+<style>
+   /* Estilo para el título principal de la página */
+  h1 {
+    text-align: center;       /* Centra el título */
+    font-size: 3.5em;         /* Ajusta el tamaño del título */
+    color: #F03741;           /* Rojo Imperial para los títulos */
+    margin-top: 20px;         /* Espacio superior para que el título no quede pegado al borde */
+  }
+   h2 {
+    text-align: center;       /* Centra el título */
+    font-size: 2.5em;         /* Ajusta el tamaño del título */
+    color: #F03741;           /* Rojo Imperial para los títulos */
+    margin-top: 20px;         /* Espacio superior para que el título no quede pegado al borde */
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #4194C3 !important; /* Celestial Blue para el fondo de la página */
+    color: #FEF4D9 !important; /* Blanco Perlado (Cornsilk) para el texto */
+    padding: 20px !important;
+  }
+
+  select {
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    border: 1px solid #94a3b8 !important;
+    background-color: #1e293b !important; /* Fondo oscuro para el select */
+    color: #FEF4D9 !important; /* Blanco Perlado para el texto del select */
+  }
+
+  button {
+    margin: 6px !important;
+    padding: 10px 18px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    background-color: #F03741 !important; /* Rojo Imperial */
+    color: white !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+    transition: background-color 0.3s ease !important;
+  }
+
+  button:hover {
+    background-color: #D72F36 !important; /* Rojo más oscuro en hover */
+  }
+
+  button.activo {
+    background-color: #FDF055 !important; /* Maize */
+    color: #1e293b !important; /* Rich black */
+  }
+ #entrenamiento {
+    text-align: center!important;
+    margin-top: 30px !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    background-color: #FDF055 !important; /* Fondo amarillo (Maize) */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+    font-size: 1.1em !important;
+    line-height: 1.5 !important;
+    color: #1e293b !important; /* Texto negro (Rich black) */
+  }
+</style>
+
+<h2 style="text-align: center;">&#127926; Ella viene por ahí y nunca llega sola... &#127926;</h2>
+
+Este es un visualizador de entrenamientos semanal personalizado para mí.\
+\
+**¡Fuerza gordito!**
+
+El entrenamiento fue creado con ayuda de la Inteligencia Artificial de DeepSeek gracias ballenita.\
+
+La página fue creada con los tutoriales de Quarto y el apoyo constante de Chat-GPT, gracias **OPEN-AI**. 
+
+Fuera de entradas de blog o algún código en R-Pubs, esta es la primera página web que hago en la vida que tiene algún elemento interactivo.
+
+Luego se irán mejorando otras funcionalidades...
+
+E.
+
+
+<!-- SELECCIÓN DE SEMANA Y DÍAS -->
+
+::: {.cell style="text-align: center;"}
+<!-- Selector de semana -->
+
+<label for="semana">Selecciona la semana:</label> <select id="semana"> <option value="1">Semana 1: Adaptación Progresiva</option> <option value="2">Semana 2: Resistencia Integrada</option> <option value="3">Semana 3: Fuerza Excéntrica</option> <option value="4">Semana 4: Desafío Integral</option> </select>
+
+<br><br>
+:::
+
+<!-- Botones para días activos -->
+::: {.cell style="text-align: center;"}
+<button onclick="mostrarDia(&#39;lunes&#39;, event)">
+
+Lunes
+
+</button>
+
+<button onclick="mostrarDia(&#39;martes&#39;, event)">
+
+Martes
+
+</button>
+
+<button onclick="mostrarDia(&#39;miercoles&#39;, event)">
+
+Miércoles
+
+</button>
+
+<button onclick="mostrarDia(&#39;jueves&#39;, event)">
+
+Jueves
+
+</button>
+
+<button onclick="mostrarDia(&#39;viernes&#39;, event)">
+
+Viernes
+
+</button>
+
+<button onclick="mostrarDia(&#39;sabado&#39;, event)">
+
+Sábado
+
+</button>
+
+<button onclick="mostrarDia(&#39;domingo&#39;, event)">
+
+Domingo
+
+</button>
+:::
+
+
+<!-- Área de resultado -->
+
+::: {#entrenamiento style="margin: 40px auto; text-align: left; max-width: 600px; background: #f9f9f9; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"}
+:::
+
+```{=html}
+
+<script>
+
+// Entrenamientos organizados por semana y día
+const entrenamientos = {
+  1: {
+    lunes: `<b>Día 1 (Exterior): Fuerza Superior</b><br>
+    <ul>
+      <li><b>Press de pecho en banco (barras de concreto):</b><br>
+      Acostado, baja barras al pecho y sube controlado. 3x8</li>
+      <li><b>Remo invertido en paralelas (pies apoyados):</b><br>
+      Cuerpo inclinado, tira del pecho a las manos. 3x6</li>
+      <li><b>Fondos asistidos (en paralelas):</b><br>
+      Baja hasta 90° con ayuda de piernas. 3x5</li>
+      <li><b>Plancha en banco:</b><br>
+      Antebrazos apoyados, cuerpo recto. 3x20 seg</li>
+    </ul>`,
+
+    martes: `<b>Día 2 (Interior): Piernas Sin Impacto</b><br>
+    <ul>
+      <li><b>Sentadilla asistida (apoyado en silla):</b><br>
+      Baja glúteos hasta tocar y sube. 3x10</li>
+      <li><b>Step-ups controlados (en escalón bajo):</b><br>
+      Sube sin impulso, enfócate en la bajada. 3x8/pierna</li>
+      <li><b>Peso muerto con barra Z:</b><br>
+      Flexiona cadera, barra cerca de piernas. 3x8</li>
+      <li><b>Elevaciones de talón:</b><br>
+      De puntillas, lentamente. 3x12</li>
+    </ul>`,
+
+    viernes: `<b>Día 3 (Exterior): Resistencia Funcional</b><br>
+    <ul>
+      <li><b>Dominadas negativas:</b><br>
+      Salta a la barra, baja en 5 seg. 3x4</li>
+      <li><b>Flexiones inclinadas (manos en banco):</b><br>
+      Menos carga para hombros. 3x8</li>
+      <li><b>Caminata de oso:</b><br>
+      Cuadrupedia coordinada. 3x10m</li>
+      <li><b>Colgante en barra:</b><br>
+      Agarre firme, hombros activos. 3x15 seg</li>
+    </ul>`,
+
+    sabado: `<b>Día 4 (Interior): Core + Cardio Adaptado</b><br>
+    <ul>
+      <li><b>Puente de glúteos:</b><br>
+      Eleva cadera contrayendo glúteos. 3x12</li>
+      <li><b>Escaladores (en suelo):</b><br>
+      Rodillas al pecho alternadas. 3x20 seg</li>
+      <li><b>Superman:</b><br>
+      Eleva brazos/piernas boca abajo. 3x10</li>
+      <li><b>Sprints en el sitio (20 seg x 3):</b><br>
+      Carrera sin impacto, rodillas altas.</li>
+    </ul>`
+  },
+
+  2: {
+    lunes: `<b>Día 1 (Interior): Full Body</b><br>
+    <ul>
+      <li><b>Press militar con barra:</b> 3x8</li>
+      <li><b>Sentadilla sumo (sin bajar de 90°):</b> 3x8</li>
+      <li><b>Remo con mancuernas:</b> 3x8/brazo</li>
+      <li><b>Plancha lateral:</b> 2x15 seg/lado</li>
+    </ul>`,
+
+    martes: `<b>Día 2 (Exterior): HIIT Bajo Impacto</b><br>
+    <i>(30 seg trabajo / 30 seg descanso, 3 rondas)</i>
+    <ul>
+      <li>Sprints cortos (15m)</li>
+      <li>Fondos en paralelas</li>
+      <li>Step-ups rápidos</li>
+      <li>Balanceo en argollas</li>
+    </ul>`,
+
+    viernes: `<b>Día 3 (Interior): Piernas Profundas</b><br>
+    <ul>
+      <li><b>Sentadilla búlgara (apoyado):</b> 3x6/pierna</li>
+      <li><b>Zancadas estáticas:</b> 3x8/pierna</li>
+      <li><b>Peso muerto rumano:</b> 3x8</li>
+      <li><b>Caminata de cangrejo:</b> 3x10m</li>
+    </ul>`,
+
+    sabado: `<b>Día 4 (Exterior): Fuerza Relativa</b><br>
+    <ul>
+      <li><b>Press inclinado en banco:</b> 3x8</li>
+      <li><b>Dominadas asistidas:</b> 3x5</li>
+      <li><b>Trepa controlada:</b> 3x4</li>
+      <li><b>Plancha con desplazamiento:</b> 3x10m</li>
+    </ul>`
+  },
+
+  3: {
+    lunes: `<b>Día 1 (Exterior): Tren Superior + Core</b><br>
+    <ul>
+      <li><b>Press de pecho excéntrico (barras de concreto):</b><br>
+      Baja las barras en 5 segundos, sube normal. 3x6</li>
+      <li><b>Dominadas negativas lentas:</b><br>
+      Baja en 6-8 segundos. 3x4</li>
+      <li><b>Fondos en paralelas con pausa:</b><br>
+      Aguanta 2 segundos abajo. 3x5</li>
+      <li><b>Plancha con elevación de pierna (en banco):</b><br>
+      Alterna piernas cada 5 seg. 3x15 seg</li>
+    </ul>`,
+
+    martes: `<b>Día 2 (Interior): Piernas Sin Impacto</b><br>
+    <ul>
+      <li><b>Sentadilla con banda en pared:</b><br>
+      Espalda contra pared, banda en rodillas, aguanta 30 seg. 3x</li>
+      <li><b>Step-ups excéntricos:</b><br>
+      Sube normal, baja en 5 seg. 3x6/pierna</li>
+      <li><b>Peso muerto con pausa (barra Z):</b><br>
+      Aguanta 2 segundos abajo. 3x6</li>
+      <li><b>Elevaciones de talón sentado (mancuernas en muslos):</b><br>
+      Más control para pantorrillas. 3x12</li>
+    </ul>`,
+
+    viernes: `<b>Día 3 (Exterior): Resistencia Funcional</b><br>
+    <ul>
+      <li><b>Remo en banco + fondos (superserie):</b><br>
+      Remo en banco (3x8) → Fondos (3x5). Sin descanso entre ellos.</li>
+      <li><b>Caminata de cangrejo con carga (barras ligeras en cadera):</b> 3x10m</li>
+      <li><b>Colgante activo en barra:</b><br>
+      Balanceo suave adelante/atrás. 3x20 seg</li>
+    </ul>`,
+
+    sabado: `<b>Día 4 (Interior): Core + Cardio Adaptado</b><br>
+    <ul>
+      <li><b>Dead Bug con mancuernas:</b><br>
+      Acostado, brazos extendidos, alterna piernas. 3x10/lado</li>
+      <li><b>Escaladores cruzados:</b><br>
+      Rodilla al codo opuesto. 3x15 seg</li>
+      <li><b>Sprints en el sitio + salto vertical (sin impacto):</b><br>
+      20 seg sprint + 5 saltos suaves. 3 rondas</li>
+    </ul>`
+  },
+
+  4: {
+    lunes: `<b>Día 1 (Exterior): Circuito de Obstáculos</b><br>
+    <i>3 rondas, descanso 1 min entre ejercicios</i>
+    <ul>
+      <li><b>Monkey bars:</b> 1 vuelta completa o hasta fallo</li>
+      <li><b>Transporte de peso:</b> Barras de concreto, 20m ida/vuelta</li>
+      <li><b>Flexiones en escalera horizontal (manos en barra baja):</b> 3x8</li>
+      <li><b>Trepa y baja controlada (estructura para trepar):</b> 3x5</li>
+    </ul>`,
+
+    martes: `<b>Día 2 (Interior): Full Body con Barra</b><br>
+    <ul>
+      <li><b>Press militar excéntrico (barra olímpica):</b> Baja en 5 segundos. 3x6</li>
+      <li><b>Sentadilla copa (sostén mancuerna en pecho):</b> Sin bajar de 90°. 3x8</li>
+      <li><b>Remo con barra Z + curl (superserie):</b> Remo (3x8) → Curl (3x10)</li>
+      <li><b>Plancha con desplazamiento lateral:</b> Mueve cuerpo hacia los lados. 3x10m</li>
+    </ul>`,
+
+    viernes: `<b>Día 3 (Exterior): HIIT con Peso Corporal</b><br>
+    <i>40 seg trabajo / 20 seg descanso, 3 rondas</i>
+    <ul>
+      <li><b>Fondos en paralelas explosivos:</b> Subida rápida</li>
+      <li><b>Step-ups con salto (sin impacto, solo intención)</b></li>
+      <li><b>Balanceo en argollas:</b> Como kettlebell swing</li>
+      <li><b>Escaladores en banco:</b> Manos apoyadas</li>
+    </ul>`,
+
+    sabado: `<b>Día 4 (Interior): Movilidad y Recuperación</b><br>
+    <ul>
+      <li><b>Estocadas inversas (apoyado en silla):</b> 3x8/pierna</li>
+      <li><b>Puente de glúteos con pausa:</b> 3x10</li>
+      <li><b>Respiración diafragmática:</b> 5 min</li>
+      <li><b>Estiramientos activos:</b> Hombros, espalda, isquios</li>
+    </ul>`
+  }
+};
+
+let diaActivo = null; // Día seleccionado actualmente
+
+// Función que muestra el entrenamiento según semana y día
+function mostrarDia(dia, event) {
+  const boton = event.target;
+  const semana = document.getElementById("semana").value;
+
+  // Si ya está activo, desactívalo
+  if (diaActivo === dia) {
+    diaActivo = null;
+    boton.classList.remove("activo");
+    document.getElementById("entrenamiento").innerHTML = "";
+    return;
+  }
+
+  diaActivo = dia;
+
+  // Quitar clase 'activo' de todos los botones
+  const botones = document.querySelectorAll("button");
+  botones.forEach(b => b.classList.remove("activo"));
+
+  // Agregar clase 'activo' al botón presionado
+  boton.classList.add("activo");
+
+  const contenido = entrenamientos[semana][dia];
+
+  // Días de descanso o no definidos
+  if (!contenido) {
+    if (dia === 'miercoles' || dia === 'jueves') {
+      document.getElementById("entrenamiento").innerHTML = `<b>${dia.charAt(0).toUpperCase() + dia.slice(1)}:</b> Descanso.`;
+    } else if (dia === 'domingo') {
+      document.getElementById("entrenamiento").innerHTML = `<b>Domingo:</b> Ve a la iglesia.`;
+    } else {
+      document.getElementById("entrenamiento").innerHTML = "No hay entrenamiento definido para este día.";
+    }
+  } else {
+    document.getElementById("entrenamiento").innerHTML = contenido;
+  }
+}
+
+// Cuando se cambia la semana, si hay un día activo, se vuelve a mostrar el contenido actualizado
+document.addEventListener("DOMContentLoaded", () => {
+  const semanaSelect = document.getElementById("semana");
+
+  semanaSelect.addEventListener("change", () => {
+    if (diaActivo) {
+      // Simula hacer clic en el botón actualmente activo para actualizar contenido
+      const botonActivo = document.querySelector(`button.activo`);
+      if (botonActivo) {
+        mostrarDia(diaActivo, { target: botonActivo });
+      }
+    }
+  });
+});
+</script>
+```
+<!-- AUDIO DE FONDO --> <audio autoplay loop> <source src="audio/bb-eoo.mp3" type="audio/mpeg"> Tu navegador no soporta audio HTML5. </audio>
+:::
